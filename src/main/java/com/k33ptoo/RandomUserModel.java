@@ -1,10 +1,12 @@
-
-
+package com.k33ptoo;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-
+/**
+ *
+ * @author KeepToo
+ */
 public class RandomUserModel {
 
     @SerializedName("id")
@@ -188,87 +190,87 @@ public class RandomUserModel {
 
 class Address {
 
-   @SerializedName("city")
-   @Expose
-   private String city;
-   @SerializedName("street_name")
-   @Expose
-   private String streetName;
-   @SerializedName("street_address")
-   @Expose
-   private String streetAddress;
-   @SerializedName("zip_code")
-   @Expose
-   private String zipCode;
-   @SerializedName("state")
-   @Expose
-   private String state;
-   @SerializedName("country")
-   @Expose
-   private String country;
-   @SerializedName("coordinates")
-   @Expose
-   private Coordinates coordinates;
+    @SerializedName("city")
+    @Expose
+    private String city;
+    @SerializedName("street_name")
+    @Expose
+    private String streetName;
+    @SerializedName("street_address")
+    @Expose
+    private String streetAddress;
+    @SerializedName("zip_code")
+    @Expose
+    private String zipCode;
+    @SerializedName("state")
+    @Expose
+    private String state;
+    @SerializedName("country")
+    @Expose
+    private String country;
+    @SerializedName("coordinates")
+    @Expose
+    private Coordinates coordinates;
 
-   public String getCity() {
-       return city;
-   }
+    public String getCity() {
+        return city;
+    }
 
-   public void setCity(String city) {
-       this.city = city;
-   }
+    public void setCity(String city) {
+        this.city = city;
+    }
 
-   public String getStreetName() {
-       return streetName;
-   }
+    public String getStreetName() {
+        return streetName;
+    }
 
-   public void setStreetName(String streetName) {
-       this.streetName = streetName;
-   }
+    public void setStreetName(String streetName) {
+        this.streetName = streetName;
+    }
 
-   public String getStreetAddress() {
-       return streetAddress;
-   }
+    public String getStreetAddress() {
+        return streetAddress;
+    }
 
-   public void setStreetAddress(String streetAddress) {
-       this.streetAddress = streetAddress;
-   }
+    public void setStreetAddress(String streetAddress) {
+        this.streetAddress = streetAddress;
+    }
 
-   public String getZipCode() {
-       return zipCode;
-   }
+    public String getZipCode() {
+        return zipCode;
+    }
 
-   public void setZipCode(String zipCode) {
-       this.zipCode = zipCode;
-   }
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
+    }
 
-   public String getState() {
-       return state;
-   }
+    public String getState() {
+        return state;
+    }
 
-   public void setState(String state) {
-       this.state = state;
-   }
+    public void setState(String state) {
+        this.state = state;
+    }
 
-   public String getCountry() {
-       return country;
-   }
+    public String getCountry() {
+        return country;
+    }
 
-   public void setCountry(String country) {
-       this.country = country;
-   }
+    public void setCountry(String country) {
+        this.country = country;
+    }
 
-   public Coordinates getCoordinates() {
-       return coordinates;
-   }
+    public Coordinates getCoordinates() {
+        return coordinates;
+    }
 
-   public void setCoordinates(Coordinates coordinates) {
-       this.coordinates = coordinates;
-   }
+    public void setCoordinates(Coordinates coordinates) {
+        this.coordinates = coordinates;
+    }
 
 }
 
- class Coordinates {
+class Coordinates {
 
     @SerializedName("lat")
     @Expose
@@ -295,7 +297,7 @@ class Address {
 
 }
 
- class CreditCard {
+class CreditCard {
 
     @SerializedName("cc_number")
     @Expose
@@ -311,7 +313,7 @@ class Address {
 
 }
 
- class Employment {
+class Employment {
 
     @SerializedName("title")
     @Expose
@@ -337,7 +339,6 @@ class Address {
     }
 
 }
-
 
 class Subscription {
 

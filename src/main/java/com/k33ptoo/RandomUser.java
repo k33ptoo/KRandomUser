@@ -1,3 +1,5 @@
+package com.k33ptoo;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import javafx.concurrent.Task;
@@ -10,11 +12,16 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+/**
+ *
+ * @author KeepToo
+ */
 public class RandomUser {
+
     private static final ExecutorService executorService = Executors.newCachedThreadPool();
     static List<RandomUserModel> userModelList = new ArrayList<>();
 
-    public static List<RandomUserModel> fetchRandomUserList(int size, RandomUserCallback randomUserCallback)  {
+    public static List<RandomUserModel> fetchRandomUserList(int size, RandomUserCallback randomUserCallback) {
 
         Task<List<RandomUserModel>> t = new Task() {
             @Override
@@ -24,7 +31,6 @@ public class RandomUser {
                     list = new Gson().fromJson(readUrl("https://random-data-api.com/api/users/random_user?size=" + size), new TypeToken<List<RandomUserModel>>() {
                     }.getType());
                 } catch (Exception e) {
-                    e.printStackTrace();
                 }
                 return list;
             }
@@ -46,16 +52,18 @@ public class RandomUser {
         try {
             URL url = new URL(urlString);
             reader = new BufferedReader(new InputStreamReader(url.openStream()));
-            StringBuffer buffer = new StringBuffer();
+            StringBuilder buffer = new StringBuilder();
             int read;
             char[] chars = new char[1024];
-            while ((read = reader.read(chars)) != -1)
+            while ((read = reader.read(chars)) != -1) {
                 buffer.append(chars, 0, read);
+            }
 
             return buffer.toString();
         } finally {
-            if (reader != null)
+            if (reader != null) {
                 reader.close();
+            }
         }
     }
 }
