@@ -91,5 +91,14 @@
         <maven.compiler.source>16</maven.compiler.source>
         <maven.compiler.target>16</maven.compiler.target>
     </properties>
+    
+    <developers>
+        <developer> 
+            <name>Amos Chepchieng </name>
+            <email>keeptoo.ui.ux@gmail.com</email>   
+            <organization>KeepToo</organization>
+        </developer>
+    </developers>
+    <description>A Java Library that get randomly generated user data from an api to display.</description>
 
 </project>
