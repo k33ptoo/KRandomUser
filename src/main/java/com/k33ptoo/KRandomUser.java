@@ -2,13 +2,11 @@ package com.k33ptoo;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import javafx.concurrent.Task;
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -16,35 +14,25 @@ import java.util.concurrent.Executors;
  *
  * @author KeepToo
  */
-public class RandomUserFX {
+public class KRandomUser {
 
     private static final ExecutorService executorService = Executors.newCachedThreadPool();
-  
-    public static void fetchRandomUserList(int size, RandomUserFXCallback randomUserCallback) {
+
+    public static void fetchRandomUserList(int size, KRandomUserCallback randomUserCallback) throws InterruptedException, Exception {
 
         //create a task
-        Task<List<RandomUserFXModel>> t = new Task() {
-            @Override
-            protected List<RandomUserFXModel> call() throws Exception {
-                List<RandomUserFXModel> list = null;
-                try {
-                    list = new Gson().fromJson(readUrl("https://random-data-api.com/api/users/random_user?size=" + size), new TypeToken<List<RandomUserFXModel>>() {
-                    }.getType());
-                } catch (Exception e) {
-                }
-                return list;
+        Callable<List<KRandomUserModel>> t = () -> {
+            List<KRandomUserModel> list = null;
+            try {
+                list = new Gson().fromJson(readUrl("https://random-data-api.com/api/users/random_user?size=" + size), new TypeToken<List<KRandomUserModel>>() {
+                }.getType());
+            } catch (Exception e) {
             }
+            return list;
         };
-
         //submit task
         executorService.submit(t);
-        t.setOnSucceeded(workerStateEvent -> {
-            randomUserCallback.onSuccess(t.getValue());
-        });        
-        t.setOnFailed(workerStateEvent -> {
-            randomUserCallback.onError("Failed Fetching Random Data");
-        });
-        
+        randomUserCallback.onFinish(t.call());
     }
 
     private static String readUrl(String urlString) throws Exception {

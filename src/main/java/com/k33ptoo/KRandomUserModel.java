@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
  *
  * @author KeepToo
  */
-public class RandomUserFXModel {
+public class KRandomUserModel {
 
     @SerializedName("id")
     @Expose
