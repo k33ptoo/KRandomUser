@@ -27,21 +27,17 @@ private ObservableList<T> data = FXCollections.observableArrayList();
 //add the random data from the lib
 //specify the size of data you want to be generated
 
- KRandomUser.fetchRandomUserList(10/*Size of list Goes here*/, new KRandomUserCallback()) {
-              @Override
-              public void onFinish(List<KRandomUserModel> list) {
-                for (KRandomUserModel f : list) {
-                    //populate your javafx list e.g
-                    data.add(
-                        new T(f.getFirstName(),
-                              f.getLastName(), 
-                              f.getPhoneNumber(), 
-                              f.getEmail()));
-                    // and others
+           try {
+            KRandomUser.fetchRandomUserList(30, list -> {
+                for (KRandomUserModel f : list
+                ) {
+                  //populate your javafx list e.g
+                    data.add(new T(f.getFirstName() + " " + f.getLastName(), f.getPhoneNumber(), f.getEmail() /*etc*/));
                 }
-              }
-             
-           });
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
 ```
 Other user details are as follows
