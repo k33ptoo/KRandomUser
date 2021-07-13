@@ -1,5 +1,5 @@
 # KRandomUser
-A JavaFX /Java Swing Consumable Library for getting random users data with abundant details from api provided by https://random-data-api.com/
+A JavaFX /Java Swing Consumable Library for getting 100 random users data with abundant details from api provided by https://random-data-api.com/
 
 **Usage** 
 
@@ -18,26 +18,45 @@ Code
 
 ``` java
 
-//example for javafx
-//create your observable list from your Model
-private ObservableList<T> data = FXCollections.observableArrayList();
-
 //for java swing you can simply create a List<T>
 
 //add the random data from the lib
-//specify the size of data you want to be generated
+//specify the size of data you want to be generated api allow max of 100
 
-           try {
-            KRandomUser.fetchRandomUserList(30, list -> {
-                for (KRandomUserModel f : list
-                ) {
-                  //populate your javafx list e.g
-                    data.add(new T(f.getFirstName() + " " + f.getLastName(), f.getPhoneNumber(), f.getEmail() /*etc*/));
+ /**
+  * How to use on Java Swing
+  * InvokeLater to prevent UI Blocking
+  */
+   SwingUtilities.invokeLater(()->{
+    KRandomUser.fetchRandomUserList(50, (List<KRandomUserModel> data) -> {
+               //do something with the list of data
+    });            
+  });    
+  
+
+ /**
+   * How to use on JavaFX without blocking the UI
+   * You have to run on a task
+   */
+  ExecutorService es = Executors.newCachedThreadPool();
+  Task<ObservableList<T>> t = new Task() {
+        @Override
+        protected Object call() throws Exception {
+            ObservableList<T> oLst = FXCollections.observableArrayList();
+            KRandomUser.fetchRandomUserList(50, list -> {
+                for (KRandomUserModel f : list) {
+                    oLst.add(/*whatever infor you want*/);
                 }
             });
-        } catch (Exception e) {
-            e.printStackTrace();
+            return oLst;
         }
+
+    };
+    es.submit(t);
+    t.setOnSucceeded((evt) -> {
+        tableView.setItems(t.getValue());
+    });
+
 
 ```
 Other user details are as follows

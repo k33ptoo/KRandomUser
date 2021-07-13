@@ -6,7 +6,7 @@
 
     <groupId>com.k33ptoo</groupId>
     <artifactId>KRandomUser</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 
     <packaging>maven-plugin</packaging>
     <name>KRandomUser</name>
@@ -84,8 +84,8 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <github.global.server>github</github.global.server>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>9</maven.compiler.source>
+        <maven.compiler.target>9</maven.compiler.target>
     </properties>
     
     <developers>
