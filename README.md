@@ -18,11 +18,6 @@ Code
 
 ``` java
 
-//for java swing you can simply create a List<T>
-
-//add the random data from the lib
-//specify the size of data you want to be generated api allow max of 100
-
  /**
   * How to use on Java Swing
   * InvokeLater to prevent UI Blocking
