@@ -16,19 +16,19 @@ import java.util.concurrent.Executors;
  *
  * @author KeepToo
  */
-public class RandomUser {
+public class RandomUserFX {
 
     private static final ExecutorService executorService = Executors.newCachedThreadPool();
-    static List<RandomUserModel> userModelList = new ArrayList<>();
+  
+    public static void fetchRandomUserList(int size, RandomUserFXCallback randomUserCallback) {
 
-    public static List<RandomUserModel> fetchRandomUserList(int size, RandomUserCallback randomUserCallback) {
-
-        Task<List<RandomUserModel>> t = new Task() {
+        //create a task
+        Task<List<RandomUserFXModel>> t = new Task() {
             @Override
-            protected List<RandomUserModel> call() throws Exception {
-                List<RandomUserModel> list = null;
+            protected List<RandomUserFXModel> call() throws Exception {
+                List<RandomUserFXModel> list = null;
                 try {
-                    list = new Gson().fromJson(readUrl("https://random-data-api.com/api/users/random_user?size=" + size), new TypeToken<List<RandomUserModel>>() {
+                    list = new Gson().fromJson(readUrl("https://random-data-api.com/api/users/random_user?size=" + size), new TypeToken<List<RandomUserFXModel>>() {
                     }.getType());
                 } catch (Exception e) {
                 }
@@ -36,15 +36,15 @@ public class RandomUser {
             }
         };
 
+        //submit task
         executorService.submit(t);
         t.setOnSucceeded(workerStateEvent -> {
-            userModelList = t.getValue();
-            randomUserCallback.onSuccess();
-        });
+            randomUserCallback.onSuccess(t.getValue());
+        });        
         t.setOnFailed(workerStateEvent -> {
             randomUserCallback.onError("Failed Fetching Random Data");
         });
-        return userModelList;
+        
     }
 
     private static String readUrl(String urlString) throws Exception {
