@@ -30,8 +30,8 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-plugin-plugin</artifactId>
-                <version>3.6.1</version>
-                 <configuration>
+                <version>3.6.0</version>
+                <configuration>
                     <!-- see http://jira.codehaus.org/browse/MNG-5346 -->
                     <skipErrorNoDescriptorsFound>true</skipErrorNoDescriptorsFound>
                 </configuration>
@@ -59,7 +59,7 @@
                     <includes>
                         <include>**/*</include>
                     </includes>
-                    <repositoryName>KRandomUserFX</repositoryName> <!-- github repo name -->
+                    <repositoryName>KRandomUser</repositoryName> <!-- github repo name -->
                     <repositoryOwner>k33ptoo</repositoryOwner> <!-- organization or user name  -->
                 </configuration>
                 <executions> <!-- run site-maven-plugin's 'site' target as part of the build's normal 'deploy' phase -->
@@ -84,8 +84,8 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <github.global.server>github</github.global.server>
-        <maven.compiler.source>9</maven.compiler.source>
-        <maven.compiler.target>9</maven.compiler.target>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
     </properties>
     
     <developers>
