@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <plugins>
+    <plugin>
+      <name>KRandomUser</name>
+      <prefix>KRandomUser</prefix>
+      <artifactId>KRandomUser</artifactId>
+    </plugin>
+  </plugins>
+</metadata>
